@@ -1,0 +1,57 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Travel plan by H</title>
+  <meta name="description" content="You can see your travel day weather by location and date">
+
+
+  <link rel="stylesheet" href="../styles/styles.css">
+
+</head>
+
+<body>
+  <div id="title">
+    <h1>Travel Plan</h1>
+  </div>
+  <div class="itinerary">
+    <h2>Itinerary</h2>
+    Enter your trip period
+    <div id="period">
+      <input type="datetime-local" id="start-date" placeholder="Start">
+      <input type="datetime-local" id="end-date" placeholder="End">
+    </div>
+    Enter your trip place
+
+  </div>
+
+  <div class="before-submit">
+    <h4>The weather and visual info of the place will be displayed here.</h4>
+  </div>
+  <div class="after-submit">
+    <div class="travel-info">
+      <h4 class="travel-summary">You will depart to the City on date. Your will travle the City for 300 days.</h4>
+      <div class="place-visual">
+        Image will be displayed here
+
+      </div>
+      <div class="weather">
+        Weather info will be displayed here
+        for 1st week of your travel.
+        <ul class="weather-list">
+          <li> day1 : 7/21 Cloudy</li>
+          <li> day2 : 7/22 Cloudy</li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="../js/app.js"></script>
+</body>
+
+</html>
