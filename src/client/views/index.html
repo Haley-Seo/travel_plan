@@ -20,16 +20,19 @@
   <div class="itinerary">
     <h2>Itinerary</h2>
     Enter your trip period
-    <div id="period">
-      <input type="datetime-local" id="start-date" placeholder="Start">
-      <input type="datetime-local" id="end-date" placeholder="End">
-    </div>
-    Enter your trip place
-    <div id="place">
-      <input type="test" id="place-input" placeholder="City">
-    </div>
-    <button id="generate" type="submit"> Get info of this travel</button>
-
+    <form class="" onsubmit="return Client.handleSubmit(event)">
+      <div id="period">
+        <input type="datetime-local" id="start-date" placeholder="Start">
+        <input type="datetime-local" id="end-date" placeholder="End">
+      </div>
+      Enter your trip place
+      <div id="place">
+        <input type="test" id="place-input" placeholder="City">
+      </div>
+      <!-- <button id="generate" type="submit"> Get info of this travel</button> -->
+      <input id="generate" type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)"
+        onsubmit="return Client.handleSubmit(event)">
+    </form>
   </div>
 
   <div class="before-submit">
@@ -59,7 +62,7 @@
   <footer>
     © Haley Seo
   </footer>
-  <script src="../js/app.js"></script>
+  <!-- <script src="../js/app.js"></script> -->
 </body>
 
 </html>
