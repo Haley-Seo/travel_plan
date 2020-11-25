@@ -41,3 +41,4 @@ Branches are named by each step.
 #### 0-init-structure-setup
 
 - Initial file directory structure was created
+- Install npm and webpack
