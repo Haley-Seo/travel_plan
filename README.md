@@ -41,4 +41,18 @@ Branches are named by each step.
 #### 0-init-structure-setup
 
 - Initial file directory structure was created
+
+#### 1-npm-webpack-install
+
 - Install npm and webpack
+
+#### 2-webpack-build
+
+- Setup Dev/Prod mode in webpack
+
+#### 3-sass-loader-dev-fix
+
+- Install loaders /plugins (babel, sass , html-webpack-plugin, clean-webpack-plugin)
+- Fix dev (npm i -D webpack-cli@3)
+
+#### 4-geonames-setup

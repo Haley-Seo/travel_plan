@@ -6,7 +6,11 @@ const {
 } = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: './src/client/app.js',
+  entry: ['babel-polyfill', './src/client/app.js'],
+  output: {
+    libraryTarget: 'var',
+    library: 'Client'
+  },
   mode: 'production',
   module: {
     rules: [{
