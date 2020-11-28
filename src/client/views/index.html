@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Travel plan by H</title>
   <meta name="description" content="You can see your travel day weather by location and date">
-
+  <link rel="shortcut icon" href="#">
 
   <!-- <link rel="stylesheet" href="../styles/styles.css"> -->
 
@@ -22,8 +22,10 @@
     Enter your trip period
     <form class="" onsubmit="return Client.handleSubmit(event)">
       <div id="period">
-        <input type="datetime-local" id="start-date" placeholder="Start">
-        <input type="datetime-local" id="end-date" placeholder="End">
+        <label for="start">Start date:</label>
+        <input type="date" id="start-date" name="trip-start" value="2018-07-22" min="2018-07-01" max="2018-07-31">
+        <label for="end">End date:</label>
+        <input type="date" id="end-date" name="trip-end" value="2018-07-22" min="2018-07-01">
       </div>
       Enter your trip place
       <div id="place">
@@ -50,14 +52,13 @@
       <div class="weather">
         Weather info will be displayed here
         for 1st week of your travel.
-        <ul class="weather-list">
-          <li> day1 : 7/21 Cloudy</li>
-          <li> day2 : 7/22 Cloudy</li>
+        <div class="weather-list">
 
-        </ul>
+        </div>
       </div>
     </div>
   </div>
+  <div id="error-message"></div>
 
   <footer>
     © Haley Seo

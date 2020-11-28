@@ -2,6 +2,8 @@ const cdResult = {}
 const weatherResult = {}
 const picResult = {}
 
+
+
 var path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -44,27 +46,38 @@ app.post('/geo', async (req, res) => {
   const geo_key = 'arsene77'
   console.log(req.body.text);
   const city = req.body.text;
-  const tmp = geoUrl + city + '&maxRows=10&username=' + geo_key;
+  const tmp = geoUrl + city + '&maxRows=1&username=' + geo_key;
   console.log(tmp);
   const response = await axios.post(tmp, {})
   try {
-    console.log(response);
-    // apiResult.score_tag = response.data.score_tag;
-    // apiResult.agreement = response.data.agreement;
-    // apiResult.subjectivity = response.data.subjectivity;
-    // apiResult.irony = response.data.irony;
-    // const result = JSON.stringify(apiResult);
-    // console.log(result);
-    // res.send(apiResult);
-    res.send(response);
-    // res.send(result)
-
+    console.log(response.data.geonames);
+    res.send(response.data);
   } catch (error) {
     console.log('error', error)
+    res.send(null);
   }
+});
 
-})
+app.post('/weather', async (req, res) => {
+  const weatherUrl = "http://api.weatherbit.io/v2.0/forecast/daily?"
+  const weather_key = '785e3e2771684142bde68004d75f7907'
+  console.log(req.body);
+  let lat = 'lat=' + req.body.lat;
+  let lon = 'lon=' + req.body.lon;
+  const tmp = weatherUrl + lat + '&' + lon + '&key=' + weather_key;
+  console.log(tmp);
+  const response = await axios.post(tmp, {})
+  try {
+    console.log(response.data);
+    res.send(response.data);
+  } catch (error) {
+    console.log('error', error)
+    res.send(null);
+  }
+});
+
+
 
 app.get('/test', function (req, res) {
   res.send(mockAPIResponse)
-})
+});
