@@ -9,7 +9,8 @@ module.exports = {
   entry: ['babel-polyfill', './src/client/app.js'],
   output: {
     libraryTarget: 'var',
-    library: 'Client'
+    library: 'Client',
+    path: path.resolve(process.cwd(), 'dist')
   },
   mode: 'development',
   devtool: 'source-map',

@@ -29,7 +29,7 @@
       </div>
       Enter your trip place
       <div id="place">
-        <input type="test" id="place-input" placeholder="City">
+        <input type="text" id="place-input" placeholder="City">
       </div>
       <!-- <button id="generate" type="submit"> Get info of this travel</button> -->
       <input id="generate" type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)"
@@ -43,26 +43,33 @@
   </div>
   <div class="after-submit">
     Comment : this sectioni will be hidden before getting weather and picture information
-    <div class="travel-info">
-      <h4 class="travel-summary">You will depart to the City on date. Your will travle the City for 300 days.</h4>
-      <div id="place-visual">
-        Image will be displayed here
-        <div class="place-img">
+    <h4 class="travel-summary">You will depart to the City on date. Your will travle the City for 300 days.</h4>
 
-        </div>
-        <div class="place-tag">
-
-        </div>
-
-
-      </div>
+    <div id="travel-info">
       <div class="weather">
         Weather info will be displayed here
         for 1st week of your travel.
-        <div class="weather-list">
-
+        <div id="weather-list" class="weather-flex-container">
+          <!-- <div class="daily-weather">
+            <div class="daily-date">
+            </div>
+            <div class="temperature">
+            </div>
+            <div class="weather">
+            </div>
+          </div> -->
         </div>
       </div>
+      Image will be displayed here
+      <div id="place-visual" class="flex-container">
+        <!-- <div class="img-flex">
+          <div class="place-img">
+          </div>
+          <div class="place-tag">
+          </div>
+        </div> -->
+      </div>
+
     </div>
   </div>
   <div id="error-message"></div>

@@ -28,7 +28,7 @@ import {
 
 
 import './styles/styles.scss'
-alert("I EXIST");
+
 
 export {
   handleSubmit,
