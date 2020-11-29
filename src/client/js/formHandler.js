@@ -4,46 +4,10 @@ import {
 import {
   checkCity
 } from './cityChecker'
+import {
+  initDate
+} from './initPage'
 const errorMsg = document.getElementById('error-message');
-
-//date range initialize - start date : tomorrow ~ d+16 , end date 
-var sDate = document.getElementById('start-date');
-var eDate = document.getElementById('end-date');
-
-console.log(sDate.value, eDate.value);
-
-const initDate = () => {
-  console.log('getDate was called');
-  const today = new Date();
-  const tomorrow = new Date(today);
-  const maxDate = new Date(today);
-
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  maxDate.setDate(maxDate.getDate() + 15);
-
-  console.log('tomorrow1', tomorrow)
-  sDate.value = dateFormat(tomorrow);
-  sDate.min = dateFormat(tomorrow);
-  sDate.max = dateFormat(maxDate);
-  eDate.value = dateFormat(tomorrow);
-  eDate.min = dateFormat(tomorrow);
-}
-const dateFormat = (d) => {
-  const dd = d.getDate();
-
-  const mm = d.getMonth() + 1;
-  const yyyy = d.getFullYear();
-  if (dd < 10) {
-    dd = `0${dd}`;
-  }
-
-  if (mm < 10) {
-    mm = `0${mm}`;
-  }
-  return `${yyyy}-${mm}-${dd}`;
-}
-
-initDate();
 
 const handleSubmit = (event) => {
   event.preventDefault()
@@ -51,16 +15,33 @@ const handleSubmit = (event) => {
   let sDt = document.getElementById('start-date').value;
   let eDt = document.getElementById('end-date').value;
   console.log(sDt, eDt)
+
   if (!checkDate(sDt, eDt)) {
     initDate();
     alert("Error : You cannot enter end date prior to start date");
     return null;
   }
+
+  //City name should be longer than 1 letter.
   if (!checkCity(cityName)) {
     cityName = '';
-    alert("Error : You should use only alphabet for city name");
+    alert("Error : Input valid city Name");
     return null;
   }
+
+  let itinerary = document.getElementById('itinerary');
+  itinerary.style.display = 'none';
+  let afterSubmit = document.getElementById('after-submit');
+  afterSubmit.style.display = 'block';
+  let duration = (new Date(eDt) - new Date(sDt)) / (24 * 3600 * 1000) + 1;
+  let arrivalCity = document.getElementById('arrival-city');
+  let departDate = document.getElementById('depart-date');
+  let calDuration = document.getElementById('duration');
+
+  arrivalCity.textContent = cityName.toUpperCase();
+  departDate.textContent = sDt;
+  calDuration.textContent = duration;
+
 
   //chain promises  sendPlace -> getWeather -> updateUI
   sendPlace('http://localhost:3000/geo', cityName)
@@ -88,19 +69,22 @@ const sendPlace = async (url = '', data) => {
   });
   try {
     const placeData = await response.json();
-    if (!placeData) throw 'Error : Cant find geo data.'
+    if (!placeData || placeData.totalResultsCount === 0)
+      throw 'Error : Cant find geo data.'
     console.log(placeData);
     return placeData;
   } catch (error) {
     console.log('error', error);
-    errorMsg.textContent = errorMsg.textContent + 'Please, input valid city name.';
+    let cityName = document.getElementById('place-input').value;
+    errorMsg.textContent = errorMsg.textContent + ' GeoNames cannot find geographic data for ' + cityName + '.';
     return null;
   }
 }
 
 const getWeather = async (url = '', data) => {
-  if (!data) {
-    alert('Please, input valid city name.');
+  console.log('place data from geonames', data);
+  if (!data || data.totalResultsCount === 0) {
+    // alert('Please, input valid city name.');
     return null;
   }
   // alert('geodata' + data.geonames[0]);
@@ -124,7 +108,8 @@ const getWeather = async (url = '', data) => {
     return weatherData;
   } catch (error) {
     console.log('error', error);
-    errorMsg.textContent = 'Error : Cannot find weather.';
+    let cityName = document.getElementById('place-input').value;
+    errorMsg.textContent = errorMsg.textContent + ' Weatherbit cannot find weather data for ' + cityName + '.';
     return null;
   }
 }
@@ -150,12 +135,14 @@ const getPhoto = async (url = '', data) => {
     return photoData;
   } catch (error) {
     console.log('error', error);
-    errorMsg.textContent = errorMsg.textContent + 'Please, input valid city name.';
+    let cityName = document.getElementById('place-input').value;
+    errorMsg.textContent = errorMsg.textContent + ' Pixabay cannot find photos for ' + cityName + '.';
     return null;
   }
 }
 
 const updateWeatherUI = (weatherData) => {
+  if (!weatherData) return null;
   let array = weatherData.data;
   let weatherList = document.getElementById('weather-list');
   array.forEach(dailyW => {
@@ -170,7 +157,6 @@ const updateWeatherUI = (weatherData) => {
     let weatherItem = document.createElement('div');
     weatherItem.classList.add('weather');
     weatherItem.textContent = dailyW.weather.description;
-    console.log(weatherItem);
     dailyItem.appendChild(dateItem);
     dailyItem.appendChild(tempItem);
     dailyItem.appendChild(weatherItem);
@@ -180,6 +166,7 @@ const updateWeatherUI = (weatherData) => {
 }
 
 const updatePhotoUI = (photoData) => {
+  if (!photoData) return null;
   let array = photoData.hits;
   let photoList = document.getElementById('place-visual');
   console.log(photoList);
@@ -199,17 +186,14 @@ const updatePhotoUI = (photoData) => {
   }
 }
 
-
-
 export {
   handleSubmit,
   sendPlace,
   getWeather,
   updateWeatherUI,
-  initDate,
-  dateFormat,
   checkDate,
   getPhoto,
   updatePhotoUI,
-  checkCity
+  checkCity,
+  initDate
 }

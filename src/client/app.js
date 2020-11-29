@@ -6,10 +6,10 @@ import {
 } from './js/formHandler'
 import {
   initDate
-} from './js/formHandler'
+} from './js/initPage'
 import {
   dateFormat
-} from './js/formHandler'
+} from './js/initPage'
 import {
   getWeather
 } from './js/formHandler'
@@ -25,6 +25,9 @@ import {
 import {
   checkDate
 } from './js/dateChecker'
+import {
+  reLoad
+} from './js/reloader'
 
 
 import './styles/styles.scss'
@@ -39,5 +42,6 @@ export {
   dateFormat,
   checkDate,
   getPhoto,
-  updatePhotoUI
+  updatePhotoUI,
+  reLoad
 }

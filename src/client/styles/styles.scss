@@ -1,46 +1,144 @@
+$base-color: #fff0f0;
+$primary-color: #463333;
+$secondary-color: #ebd4d4;
+$point-color: #ce6262;
+$button-color: #835858;
+$border-dark: rgba($base-color, 0.88);
+$border-light: rgba($primary-color, 0.88);
+
+$heading-font: Georgia, serif;
+$p-font: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+
+
 body {
-  background : #ffdada;
-  color : #31326f;
+  background : $base-color;
+  color : $primary-color;
+  font-family: $p-font;
+  text-align : center;
 }
 
-#generate {
-  background : #9ddfd3;
-  height : 20px;
-  border-radius : 10px;
+h1,h2,h3,h4 {
+  font-family: $heading-font;
+  text-align: center;
 }
 
+.p-large {
+  font-size : 20px;
+  padding : 10px;
+}
+
+.p-middle {
+  font-size : 18px;
+}
+
+a:hover {
+  text-decoration-color: $point-color;
+
+}
+#travel-quote {
+  width : 70%;
+  min-width : 400px;
+  margin: auto;
+  background-color : $secondary-color;
+  padding: 15px;
+  margin-bottom: 30px;
+}
+
+#quote {
+  text-align: center;
+  font-size : 22px;
+}
+#person {
+  margin-top: 15px;
+  text-align: center;
+  font-size : 18px;
+}
+
+#itinerary {
+  width: 70%;
+  min-width:  400px;
+  margin: auto;
+  background-color : $secondary-color;
+  padding: 15px;
+  
+}
+
+@media only screen and (max-width: 600px){
+  #travel-quote, #itinerary {
+    width : 90%;
+    min-width : 0;
+  }
+}
+
+#place-input {
+  font-size: 16px;
+  padding: 3px;
+}
+
+#generate, #reload {
+  margin : auto;
+  background : $button-color;
+  color : $base-color;
+  padding : 5px 20px;
+  border-radius : 15px;
+  border: solid 2px $border-light;
+  font-size : 16px;
+}
+
+#generate:hover {
+  background : $point-color;
+}
+
+#after-submit {
+  display: none;
+}
+#arrival-city, #departure-date, #duration {
+  text-decoration : underline;
+}
 #error-message {
-  color : red;
+  color : $point-color;
 }
+
+#weather-info {
+  background: $button-color;
+  width : 90%;
+  margin : auto;
+  color : $base-color;
+}
+
 .weather-flex-container {
   display: flex;
   flex-wrap: wrap;
-  background-color:yellow;
+  justify-content: center;
 }
 .weather-flex-container .daily-weather{
-  background-color : #f1f1f1;
+  background-color : $secondary-color;
+  color : $primary-color;
   margin:10px;
   padding:5px;
   font-size:16px;
   width:100px;
 }
 
+#photo-info{
+  background: $secondary-color;
+  width : 90%;
+  margin : auto;
+}
 .flex-container {
   display: flex;
-  flex-wrap: wrap;
-  background-color:DodgerBlue;
-  
+  flex-wrap: wrap;  
+  justify-content: center;
 }
 
 .flex-container > div{
-  background-color : #f1f1f1;
   margin:10px;
   padding:5px;
   font-size:16px;
 }
 @media only screen and (max-width: 600px){
   .flex-container > div{
-    background-color : #f1f1f1;
+    background-color : $secondary-color;
     margin:auto;
     margin-bottom:10px;
     padding:5px;
@@ -48,10 +146,20 @@ body {
   }
 }
 
-
 .center-cropped {
   object-fit: none; /* Do not scale the image */
   object-position: center; /* Center the image within the element */
   height: 300px;
   width: 300px;
+  border-radius: 15px;
+  border : solid 2px $secondary-color
 }
+
+.center-cropped:hover {
+  border : solid 2px $point-color;
+}
+
+.place-tag {
+  width: 300px;
+}
+
