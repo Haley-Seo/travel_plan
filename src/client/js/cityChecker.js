@@ -1,11 +1,6 @@
-//check if city name has a space
+//check if city name is longer than 1
 const checkCity = (cityName) => {
-  let alphabet = 'abcdefghijklmnopqrstuvwxyz'
-  cityName = cityName.toLowerCase();
-  for (let ch of cityName) {
-    if (alphabet.indexOf(ch) === -1) return false;
-  }
-  return true;
+  return cityName.length > 1;
 }
 
 export {

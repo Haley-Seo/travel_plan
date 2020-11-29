@@ -8,47 +8,55 @@
   <title>Travel plan by H</title>
   <meta name="description" content="You can see your travel day weather by location and date">
   <link rel="shortcut icon" href="#">
-
   <!-- <link rel="stylesheet" href="../styles/styles.css"> -->
-
 </head>
 
 <body>
   <div id="title">
     <h1>Travel Plan</h1>
   </div>
-  <div class="itinerary">
+  <div id="travel-quote">
+    <div id="quote">
+
+    </div>
+    <div id="person">
+
+    </div>
+  </div>
+  <div id="itinerary">
     <h2>Itinerary</h2>
-    Enter your trip period
     <form class="" onsubmit="return Client.handleSubmit(event)">
+      <p>Enter your trip period. If your start date is in more than 16 days, come back later.</p>
       <div id="period">
         <label for="start">Start date:</label>
         <input type="date" id="start-date" name="trip-start" value="2018-07-22" min="2018-07-01" max="2018-07-31">
         <label for="end">End date:</label>
         <input type="date" id="end-date" name="trip-end" value="2018-07-22" min="2018-07-01">
       </div>
-      Enter your trip place
+      <p>Enter your trip place
       <div id="place">
         <input type="text" id="place-input" placeholder="City">
       </div>
-      <!-- <button id="generate" type="submit"> Get info of this travel</button> -->
-      <input id="generate" type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)"
-        onsubmit="return Client.handleSubmit(event)">
+      </p>
+      <p>
+        <input id="generate" type="submit" name="" value="Show the Place Info"
+          onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
+      </p>
     </form>
   </div>
 
-  <div class="before-submit">
-    <h4>The weather and visual info of the place will be displayed here.</h4>
-    Comment : this section will be hidden after getting weather and picture information
-  </div>
-  <div class="after-submit">
-    Comment : this sectioni will be hidden before getting weather and picture information
-    <h4 class="travel-summary">You will depart to the City on date. Your will travle the City for 300 days.</h4>
+  <div id="after-submit">
+    <input id="reload" type="submit" name="" value="Enter different Itinerary" onclick="return Client.reLoad(event)"
+      onsubmit="return Client.reLoad(event)">
+    <h2>Travel Summary</h2>
+    <p class="travel-summary p-large">You will depart to <span id="arrival-city"></span> on <span
+        id="depart-date"></span>.
+      Your will travel there for <span id="duration"></span> days.</p>
 
     <div id="travel-info">
-      <div class="weather">
-        Weather info will be displayed here
-        for 1st week of your travel.
+      <div id="weather-info">
+        <p class="p-large">Weather Forecast during 16days from today. Date / High temperature / Weather description </p>
+        powered by <a href="https://www.geonames.org/" target="_blank"></a>GeoNames</a>, WeatherBit
         <div id="weather-list" class="weather-flex-container">
           <!-- <div class="daily-weather">
             <div class="daily-date">
@@ -60,14 +68,18 @@
           </div> -->
         </div>
       </div>
-      Image will be displayed here
-      <div id="place-visual" class="flex-container">
-        <!-- <div class="img-flex">
+
+      <div id="photo-info">
+        <p class="p-large">Photos of the city</p>
+        powered by <a href="https://pixabay.com/" target="_blank">PixaBay</a>
+        <div id="place-visual" class="flex-container">
+          <!-- <div class="img-flex">
           <div class="place-img">
           </div>
           <div class="place-tag">
           </div>
         </div> -->
+        </div>
       </div>
 
     </div>
