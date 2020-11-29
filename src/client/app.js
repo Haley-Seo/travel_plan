@@ -14,7 +14,13 @@ import {
   getWeather
 } from './js/formHandler'
 import {
-  updateUI
+  updateWeatherUI
+} from './js/formHandler'
+import {
+  getPhoto
+} from './js/formHandler'
+import {
+  updatePhotoUI
 } from './js/formHandler'
 import {
   checkDate
@@ -28,8 +34,10 @@ export {
   handleSubmit,
   sendPlace,
   getWeather,
-  updateUI,
+  updateWeatherUI,
   initDate,
   dateFormat,
-  checkDate
+  checkDate,
+  getPhoto,
+  updatePhotoUI
 }
