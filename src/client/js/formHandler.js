@@ -4,7 +4,7 @@ import {
 
 const errorMsg = document.getElementById('error-message');
 
-//IIFE date range initialize - start date : tomorrow ~ d+16 , end date 
+//date range initialize - start date : tomorrow ~ d+16 , end date 
 var sDate = document.getElementById('start-date');
 var eDate = document.getElementById('end-date');
 
@@ -59,8 +59,12 @@ const handleSubmit = (event) => {
   //chain promises  sendPlace -> getWeather -> updateUI
   sendPlace('http://localhost:3000/geo', cityName)
     .then((placeData) => getWeather('http://localhost:3000/weather', placeData))
-    .then((weatherData) => updateUI(weatherData));
+    .then((weatherData) => updateWeatherUI(weatherData));
   console.log('weather data gotten');
+
+  getPhoto('http://localhost:3000/photo', cityName)
+    .then((photoData) => updatePhotoUI(photoData));
+  console.log('photo data gotten');
 }
 
 const sendPlace = async (url = '', data) => {
@@ -115,16 +119,66 @@ const getWeather = async (url = '', data) => {
   }
 }
 
-const updateUI = (weatherData) => {
+const getPhoto = async (url = '', data) => {
+  alert('Before fetch city Name - getphoto' + data);
+  const response = await fetch(url, {
+    method: 'POST',
+    credentials: 'same-origin',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      text: data
+    })
+  });
+  try {
+    const photoData = await response.json();
+    if (!photoData || !photoData.hits.length) throw 'Error : Cant find photo data.'
+    console.log(photoData);
+    return photoData;
+  } catch (error) {
+    console.log('error', error);
+    errorMsg.textContent = 'Please, input valid city name.';
+    return null;
+  }
+}
+
+
+
+
+
+const updateWeatherUI = (weatherData) => {
 
 }
+
+const updatePhotoUI = (photoData) => {
+  let array = photoData.hits;
+  let photoItem = document.getElementById('place-visual');
+  console.log(photoItem);
+  console.log(array);
+  for (let i = 0; i < Math.min(4, array.length); i++) {
+    let imgItem = document.createElement('div');
+    imgItem.classList.add('place-img');
+    imgItem.innerHTML = `<a href="${array[i].pageURL}" target="_blank"><img src="${array[i].webformatURL}"></a>`
+    let tagItem = document.createElement('div');
+    tagItem.classList.add('place-tag');
+    tagItem.innerText = array[i].tags;
+    photoItem.appendChild(imgItem);
+    photoItem.appendChild(tagItem);
+  }
+}
+
+
 
 export {
   handleSubmit,
   sendPlace,
   getWeather,
-  updateUI,
+  updateWeatherUI,
   initDate,
   dateFormat,
-  checkDate
+  checkDate,
+  getPhoto,
+  updatePhotoUI
 }

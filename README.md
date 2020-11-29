@@ -8,7 +8,7 @@ User needs to input itinerary information of travel plan.
 
 - City, Start Date, End Date
 
-API will get the weather of first week and the picture of the city.
+API will get the weather of 16days from today and the picture of the city.
 Minimal decoration is applied.
 Function works fine.
 
@@ -17,18 +17,20 @@ Function works fine.
 - Root:
   - `package.json`
   - `readme.md`
-  - `webpack.config.js`
+  - `webpack.dev.js`
+  - `webpack.prod.js`
   - src folder
     - server folder
-      - `server.js` (name will vary)
+      - `server.js`
     - client folder
-      - `index.js`
+      - `app.js`
       - html/views folder
         - `index.html`
       - js folder
-        - `app.js` (name will vary)
+        - `formHandler.js`
+        - `dateChecker.js`
       - styles folder
-        - `style.scss` (name will vary - may be broke into partials)
+        - `style.scss`
 
 ## Project Steps
 
@@ -56,3 +58,11 @@ Branches are named by each step.
 - Fix dev (npm i -D webpack-cli@3)
 
 #### 4-geonames-setup
+
+- Setup API to get coordinate of the city
+
+#### 5-weather-date-setup
+
+- Get 16 days of forecast weather from weatherBit
+- Limit start date within the forecast 16 days (Date type, min-max setting)
+- Validate end date is later than start date (checkDate)
