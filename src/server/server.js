@@ -82,7 +82,7 @@ app.post('/photo', async (req, res) => {
   const photo_key = '19301360-6416fd30b969a325f65e85d0f';
   console.log(req.body.text);
   const city = req.body.text;
-  const tmp = photoUrl + photo_key + '&q=' + city + '+tour&image_type=photo&pretty=true';
+  const tmp = photoUrl + photo_key + '&q=' + city + '&image_type=photo&pretty=true';
   console.log(tmp);
   const response = await axios.post(tmp, {})
   try {

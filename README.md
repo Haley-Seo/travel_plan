@@ -66,3 +66,8 @@ Branches are named by each step.
 - Get 16 days of forecast weather from weatherBit
 - Limit start date within the forecast 16 days (Date type, min-max setting)
 - Validate end date is later than start date (checkDate)
+
+#### 6-pixabay-api-setup
+
+- Get photos from pixabay
+- Display at most 8 photos to the browser
