@@ -71,3 +71,18 @@ Branches are named by each step.
 
 - Get photos from pixabay
 - Display at most 8 photos to the browser
+
+#### 7-ui-update-jest-setup
+
+- Render weather data and photo data to information section
+- Test environment setup with Jest
+
+#### 8-travel-summary-style-setup
+
+- Calculate duration and departing date from input date values
+- Style improve for information section
+
+#### 9-service-worker-setup
+
+- Setup service worker
+- Cache issue still remains. Any advice will be welcomed.

@@ -4,6 +4,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const {
   CleanWebpackPlugin
 } = require('clean-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   entry: ['babel-polyfill', './src/client/app.js'],
@@ -29,6 +30,11 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: "./src/client/views/index.html",
       filename: "./index.html",
+    }),
+
+    new WorkboxPlugin.GenerateSW({
+      skipWaiting: true,
+      exclude: [/_redirects/]
     }),
     new CleanWebpackPlugin({
       // Simulate the removal of files
