@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Travel plan by H</title>
   <meta name="description" content="You can see your travel day weather by location and date">
+  <meta http-equiv="Cache-control" content="no-cache">
   <link rel="shortcut icon" href="#">
   <!-- <link rel="stylesheet" href="../styles/styles.css"> -->
 </head>
@@ -90,6 +91,16 @@
     © Haley Seo
   </footer>
   <!-- <script src="../js/app.js"></script> -->
+  <script>
+    // Check that service workers are supported
+    if ('serviceWorker' in navigator) {
+      // Use the window load event to keep the page load performant
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js');
+      });
+
+    }
+  </script>
 </body>
 
 </html>
