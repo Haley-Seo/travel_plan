@@ -34,13 +34,13 @@ const generateQuote = () => {
 var sDate = document.getElementById('start-date');
 var eDate = document.getElementById('end-date');
 
-console.log(sDate.value, eDate.value);
+// console.log(sDate.value, eDate.value);
 
 const initDate = () => {
   console.log('getDate was called');
-  const today = new Date();
-  const tomorrow = new Date(today);
-  const maxDate = new Date(today);
+  let today = new Date();
+  let tomorrow = new Date(today);
+  let maxDate = new Date(today);
 
   tomorrow.setDate(tomorrow.getDate() + 1);
   maxDate.setDate(maxDate.getDate() + 15);
@@ -53,10 +53,10 @@ const initDate = () => {
   eDate.min = dateFormat(tomorrow);
 }
 const dateFormat = (d) => {
-  const dd = d.getDate();
+  let dd = d.getDate();
 
-  const mm = d.getMonth() + 1;
-  const yyyy = d.getFullYear();
+  let mm = d.getMonth() + 1;
+  let yyyy = d.getFullYear();
   if (dd < 10) {
     dd = `0${dd}`;
   }
